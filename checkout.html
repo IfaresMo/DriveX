@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إكمال الاشتراك | COACH MAZEN</title>
+    <style>html { visibility: hidden; }</style>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        body { font-family: 'Cairo', sans-serif; background-color: #080808; color: white; min-height: 100vh; margin: 0; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+    <script>
+        (function () {
+            const savedLang = localStorage.getItem("userLang") || "ar";
+            document.documentElement.lang = savedLang;
+            document.documentElement.dir = savedLang === "ar" ? "rtl" : "ltr";
+            window.currentLang = savedLang;
+        })();
+    </script>
+</head>
+
+<body class="flex flex-col items-center min-h-screen">
+
+<header class="w-full p-6 text-center border-b-2 border-yellow-500 bg-[#080808]">
+    <a href="index.html" class="block">
+        <div class="text-2xl font-black text-white tracking-tighter">
+            COACH <span class="text-yellow-500">MAZEN</span>
+        </div>
+    </a>
+</header>
+
+    <main class="flex-grow flex items-center justify-center w-full p-4">
+        <div class="glass w-full max-w-2xl p-6 md:p-10 rounded-[2rem] shadow-2xl">
+            <div class="mb-8 text-center">
+                <h1 id="main-title" class="text-2xl md:text-3xl font-black" data-lang-ar="إكمال عملية الاشتراك" data-lang-en="Complete Subscription">إكمال عملية الاشتراك</h1>
+                <p id="sub-title" class="text-gray-400 text-sm mt-2" data-lang-ar="اختر الباقة المناسبة وابدأ التحدي" data-lang-en="Choose your plan and start the challenge">اختر الباقة المناسبة وابدأ التحدي</p>
+            </div>
+
+            <div class="mb-6 p-4 rounded-xl border border-yellow-500/30 bg-yellow-500/5 text-center cursor-pointer hover:bg-yellow-500/10 transition" onclick="copyNumber('01014014202')">
+                <p class="text-xs text-yellow-500 mb-1" data-lang-ar="اضغط لنسخ رقم فودافون كاش" data-lang-en="Click to copy Vodafone Cash number">اضغط لنسخ رقم فودافون كاش</p>
+                <div class="text-xl font-bold tracking-widest text-white">01014014202</div>
+            </div>
+
+            <form id="checkoutForm" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="md:col-span-2">
+                    <label class="text-xs text-gray-400 block mb-1" data-lang-ar="الاسم الثلاثي" data-lang-en="Full Name">الاسم الثلاثي</label>
+                    <input type="text" required class="w-full bg-black/50 p-4 rounded-xl border border-white/10 focus:border-yellow-500 outline-none transition">
+                </div>
+
+                <div class="md:col-span-2 relative group">
+                    <label class="text-xs text-gray-400 block mb-2" data-lang-ar="الباقة المختارة" data-lang-en="Selected Plan">الباقة المختارة</label>
+                    <div id="plan-dropdown" class="w-full bg-black/50 border border-white/10 rounded-xl p-4 cursor-pointer flex justify-between items-center transition hover:border-yellow-500">
+                        <span id="selected-plan-text" class="text-sm font-bold" data-lang-ar="اختر باقتك..." data-lang-en="Select your plan...">اختر باقتك...</span>
+                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+
+                    <div id="dropdown-menu" class="hidden absolute top-full mt-2 w-full bg-[#111] border border-white/10 rounded-xl overflow-hidden z-50 shadow-2xl">
+                        <div class="p-2 space-y-1">
+                            <div class="text-[10px] text-yellow-500 font-bold px-3 py-1 uppercase tracking-widest" data-lang-ar="3 أشهر" data-lang-en="3 Months">3 Months</div>
+                            
+                            <div onclick="selectPlan('silver_3', window.currentLang === 'ar' ? 'سيلفر (3 أشهر) - 2000 ج.م' : 'Silver (3 Months) - 2000 EGP')" 
+                                 class="px-4 py-3 text-sm hover:bg-yellow-500 hover:text-black cursor-pointer rounded-lg transition" 
+                                 data-lang-ar="سيلفر (3 أشهر) - 2000 ج.م" data-lang-en="Silver (3 Months) - 2000 EGP">Silver (3 Months) - 2000 EGP</div>
+                            
+                            <div onclick="selectPlan('gold_3', window.currentLang === 'ar' ? 'جولد (3 أشهر) - 3000 ج.م' : 'Gold (3 Months) - 3000 EGP')" 
+                                 class="px-4 py-3 text-sm hover:bg-yellow-500 hover:text-black cursor-pointer rounded-lg transition border-l-4 border-yellow-500" 
+                                 data-lang-ar="جولد (3 أشهر) - 3000 ج.م" data-lang-en="Gold (3 Months) - 3000 EGP">Gold (3 Months) - 3000 EGP</div>
+                            
+                            <div class="text-[10px] text-yellow-500 font-bold px-3 py-1 uppercase tracking-widest mt-2" data-lang-ar="6 أشهر" data-lang-en="6 Months">6 Months</div>
+                            
+                            <div onclick="selectPlan('silver_6', window.currentLang === 'ar' ? 'سيلفر (6 أشهر) - 5000 ج.م' : 'Silver (6 Months) - 5000 EGP')" 
+                                 class="px-4 py-3 text-sm hover:bg-yellow-500 hover:text-black cursor-pointer rounded-lg transition" 
+                                 data-lang-ar="سيلفر (6 أشهر) - 5000 ج.م" data-lang-en="Silver (6 Months) - 5000 EGP">Silver (6 Months) - 5000 EGP</div>
+                            
+                            <div onclick="selectPlan('gold_6', window.currentLang === 'ar' ? 'جولد (6 أشهر) - 6000 ج.م' : 'Gold (6 Months) - 6000 EGP')" 
+                                 class="px-4 py-3 text-sm hover:bg-yellow-500 hover:text-black cursor-pointer rounded-lg transition" 
+                                 data-lang-ar="جولد (6 أشهر) - 6000 ج.م" data-lang-en="Gold (6 Months) - 6000 EGP">Gold (6 Months) - 6000 EGP</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="selected-plan-value" name="plan" required>
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="text-xs text-gray-400 block mb-1" data-lang-ar="إرفاق صورة الإيصال" data-lang-en="Attach Receipt">إرفاق صورة الإيصال</label>
+                    <input type="file" required class="w-full bg-black/50 p-4 rounded-xl border border-white/10 text-gray-400 file:bg-yellow-500 file:text-black file:rounded-lg file:border-0 file:px-4 file:py-2">
+                </div>
+
+                <button type="submit" id="submit-btn" class="md:col-span-2 w-full bg-yellow-500 hover:bg-yellow-400 text-black font-black py-4 rounded-xl transition mt-4" data-lang-ar="تأكيد الاشتراك الآن" data-lang-en="Confirm Subscription">
+                    تأكيد الاشتراك الآن
+                </button>
+            </form>
+
+            <div class="mt-8 text-center">
+                <a href="index.html" id="back-btn" class="text-gray-500 hover:text-white transition text-sm font-bold border-b border-gray-700" data-lang-ar="← رجوع للرئيسية" data-lang-en="← Back to Home">← رجوع للرئيسية</a>
+            </div>
+        </div>
+    </main>
+
+<script>
+    const imgbbAPI = "https://api.imgbb.com/1/upload?key=0b57d93b71026863b36b92cfb36ee031";
+
+    // دالة نسخ الرقم
+    function copyNumber(number) {
+        navigator.clipboard.writeText(number).then(() => {
+            Swal.fire({
+                icon: 'success',
+                title: window.currentLang === 'ar' ? 'تم النسخ!' : 'Copied!',
+                text: number,
+                timer: 1500,
+                showConfirmButton: false,
+                background: '#111',
+                color: '#fff'
+            });
+        });
+    }
+
+    function applyLanguage() {
+        const lang = window.currentLang;
+        document.querySelectorAll("[data-lang-" + lang + "]").forEach(el => {
+            el.innerText = el.getAttribute("data-lang-" + lang);
+        });
+        document.documentElement.style.visibility = "visible";
+    }
+
+    applyLanguage();
+
+    const form = document.getElementById('checkoutForm');
+    const swalTrans = {
+        ar: { errorTitle: 'خطأ', errorMsg: 'يرجى رفع صورة الإيصال', uploading: 'جاري رفع الصورة...', successTitle: 'تم تحويلك للواتساب!', successText: 'يرجى إرسال الرسالة لتأكيد الاشتراك.', errorUpload: 'حدث خطأ أثناء رفع الصورة', confirmBtn: 'حسناً' },
+        en: { errorTitle: 'Error', errorMsg: 'Please upload the receipt image', uploading: 'Uploading image...', successTitle: 'Redirected to WhatsApp!', successText: 'Please send the message to confirm your subscription.', errorUpload: 'An error occurred while uploading the image', confirmBtn: 'OK' }
+    };
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const lang = window.currentLang || 'ar';
+        const name = form.querySelector('input[type="text"]').value;
+        const plan = document.getElementById('selected-plan-text').innerText;
+        const fileInput = form.querySelector('input[type="file"]');
+        const file = fileInput.files[0];
+
+        if (!file) {
+            Swal.fire(swalTrans[lang].errorTitle, swalTrans[lang].errorMsg, 'error');
+            return;
+        }
+
+        Swal.fire({ title: swalTrans[lang].uploading, allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+        try {
+            const formData = new FormData();
+            formData.append("image", file);
+            const response = await fetch(imgbbAPI, { method: "POST", body: formData });
+            const data = await response.json();
+            if (!data.success) throw new Error("Upload failed");
+
+            const imageUrl = data.data.url;
+            const phoneNumber = "201014014202";
+            const message = `كوتش مازن
+عايز أشترك 
+
+الاسم: ${name}
+الباقة: ${plan}
+
+رابط إيصال الدفع:
+${imageUrl}`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+
+            Swal.fire({
+                title: swalTrans[lang].successTitle,
+                text: swalTrans[lang].successText,
+                icon: 'success',
+                background: '#111',
+                color: '#fff',
+                confirmButtonColor: '#eab308',
+                confirmButtonText: swalTrans[lang].confirmBtn
+            });
+
+        } catch (error) {
+            console.error(error);
+            Swal.fire(swalTrans[lang].errorTitle, swalTrans[lang].errorUpload, 'error');
+        }
+    });
+
+    const dropdown = document.getElementById('plan-dropdown');
+    const menu = document.getElementById('dropdown-menu');
+    dropdown.addEventListener('click', () => menu.classList.toggle('hidden'));
+    function selectPlan(value, text) {
+        document.getElementById('selected-plan-value').value = value;
+        document.getElementById('selected-plan-text').innerText = text;
+        menu.classList.add('hidden');
+    }
+    window.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) menu.classList.add('hidden');
+    });
+</script>
+</body>
+</html>
